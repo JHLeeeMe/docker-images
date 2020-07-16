@@ -7,19 +7,15 @@ with vim, curl
 - 16.04
 
 ## Usage
-Build & Run
-- Build
+- Build & Run
 ```bash
-$ docker build -t my-ubuntu:<tag> .
-```
-
-- Run
-```bash
+$ docker build -t my-ubuntu:<tag> <path/to/Dockerfile>
 $ docker run -it my-ubuntu:<tag>
 ```
 
 OR
 
+- Pull & Run
 ```bash
 $ docker pull jhleeeme/ubuntu:<tag>
 $ docker run -it [--name <container-name>] jhleeeme/ubuntu:<tag>
