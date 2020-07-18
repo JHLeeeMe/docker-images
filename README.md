@@ -1,7 +1,7 @@
 # docker-images
 
 ## Ubuntu
-with ```vim, curl```  
+Contains ```vim```, ```curl```  
 [ubuntu/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/ubuntu)
 
 ### Tags
