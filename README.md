@@ -1,7 +1,7 @@
 # docker-images
 
 ## Ubuntu
-with vim, curl
+with ```vim, curl```  
 [ubuntu/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/ubuntu)
 
 ### Tags
@@ -10,8 +10,8 @@ with vim, curl
 - [16.04](https://github.com/JHLeeeMe/docker-images/tree/master/ubuntu/16.04)
 
 ## Jupyter-Lab
-BASE: python:3.7.8-buster
-with pandas, numpy, matplotlib
+BASE: ```python:3.7.8-buster```  
+Contains ```pandas```, ```numpy```, ```matplotlib```  
 [jupyter-lab/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/jupyter-lab)
 
 ### Tags
