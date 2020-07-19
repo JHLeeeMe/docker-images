@@ -1,6 +1,6 @@
-# JupyterLab images
-BASE IMAGE: ```python:3.7.8-buster```  
-with pandas, numpy, matplotlib
+# Jupyter-Lab images
+BASE: ```python:3.7.8-buster```  
+Contains ```pandas```, ```numpy```, ```matplotlib```
 
 ## Tags
 - ```py37```
@@ -12,7 +12,7 @@ $ docker build -t my-jupyter-lab:<tag> <path/to/Dockerfile>
 ```
 - ```Run```
 ```bash
-$ docker run -p <port>:8888 my-jupyter-lab:<tag>
+$ docker run -p <port>:8888 [-v <path/to/project/root>:/opt/jupyter] my-jupyter-lab:<tag>
 ```
 
 OR
@@ -28,5 +28,5 @@ OR
 - Pull & Run
 ```bash
 $ docker pull jhleeeme/jupyter-lab:py37
-$ docker run -p <port>:8888 [--name <container-name>] jhleeeme/ubuntu:<tag>
+$ docker run -p <port>:8888 [-v <path/to/project/root>:/opt/jupyter] [--name <container-name>] jhleeeme/jupyter-lab:py37
 ```
