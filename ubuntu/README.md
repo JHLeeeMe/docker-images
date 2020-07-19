@@ -1,5 +1,5 @@
 # Ubuntu images
-with vim, curl
+Contains ```vim```, ```curl```
 
 ## Tags
 - 20.04
