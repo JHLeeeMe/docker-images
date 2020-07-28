@@ -2,7 +2,7 @@
 
 ## Ubuntu
 Contains ```vim```, ```curl```  
-[ubuntu/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/ubuntu)
+README: [ubuntu/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/ubuntu)
 
 ### Tags
 - [20.04](https://github.com/JHLeeeMe/docker-images/tree/master/ubuntu/20.04)
@@ -12,7 +12,7 @@ Contains ```vim```, ```curl```
 ## Jupyter-Lab
 BASE: ```python:3.7.8-buster```  
 Contains ```pandas```, ```numpy```, ```matplotlib```  
-[jupyter-lab/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/jupyter-lab)
+README: [jupyter-lab/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/jupyter-lab)
 
 ### Tags
 - [py37](https://github.com/JHLeeeMe/docker-images/tree/master/jupyter-lab/py37)
