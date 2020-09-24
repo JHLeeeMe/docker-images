@@ -23,3 +23,17 @@ README: [hadoop/README.md](https://github.com/JHLeeeMe/docker-images/tree/master
 
 ### Tags
 - [3.2.1](https://github.com/JHLeeeMe/docker-images/tree/master/hadoop/3.2.1)
+
+## Spark
+BASE: ```jhleeeme/hadoop:3.2.1```  
+README: [spark/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/spark)
+
+### Tags
+- [2.4.0](https://github.com/JHLeeeMe/docker-images/tree/master/spark/2.4.0)
+
+## Zeppelin
+BASE: ```jhleeeme/spark:2.4.0```  
+README: [zeppelin/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/zeppelin)
+
+### Tags
+- [0.8.2](https://github.com/JHLeeeMe/docker-images/tree/master/zeppelin/0.8.2)
