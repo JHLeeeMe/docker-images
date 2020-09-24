@@ -23,7 +23,7 @@ RUN mkdir -p /opt/java && \
     tar -xvf jdk-8u131-linux-x64.tar.gz -C /opt/java --strip-components=1 && \
     rm jdk-8u131-linux-x64.tar.gz
 
-# java env
+# ENV java
 ENV JAVA_HOME /opt/java
 ENV PATH $PATH:$JAVA_HOME/bin
 
@@ -36,7 +36,7 @@ RUN wget https://archive.apache.org/dist/hadoop/core/hadoop-3.2.1/hadoop-3.2.1.t
     rm hadoop-3.2.1.tar.gz && \
     cd /opt/ && ln -s ./hadoop-3.2.1 hadoop
 
-# hadoop env
+# ENV hadoop
 ENV HADOOP_HOME /opt/hadoop
 ENV HADOOP_COMMON_HOME $HADOOP_HOME
 ENV HADOOP_HDFS_HOME $HADOOP_HOME
@@ -45,12 +45,12 @@ ENV HADOOP_YARN_HOME $HADOOP_HOME
 ENV HADOOP_CONF_DIR $HADOOP_HOME/etc/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
-RUN echo "export JAVA_HOME=$JAVA_HOME" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh && \
-    echo "export HDFS_DATANODE_USER=root" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh && \
-    echo "export HDFS_NAMENODE_USER=root" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh && \
-    echo "export HDFS_SECONDARYNAMENODE_USER=root" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh && \
-    echo "export YARN_RESOURCEMANAGER_USER=root" >> $HADOOP_HOME/etc/hadoop/yarn-env.sh && \
-    echo "export YARN_NODEMANAGER_USER=root" >> $HADOOP_HOME/etc/hadoop/yarn-env.sh
+RUN echo "export JAVA_HOME=$JAVA_HOME" >> $HADOOP_CONF_DIR/hadoop-env.sh && \
+    echo "export HDFS_DATANODE_USER=root" >> $HADOOP_CONF_DIR/hadoop-env.sh && \
+    echo "export HDFS_NAMENODE_USER=root" >> $HADOOP_CONF_DIR/hadoop-env.sh && \
+    echo "export HDFS_SECONDARYNAMENODE_USER=root" >> $HADOOP_CONF_DIR/hadoop-env.sh && \
+    echo "export YARN_RESOURCEMANAGER_USER=root" >> $HADOOP_CONF_DIR/yarn-env.sh && \
+    echo "export YARN_NODEMANAGER_USER=root" >> $HADOOP_CONF_DIR/yarn-env.sh
 
 RUN mkdir -pv $HADOOP_HOME/input && \
     mkdir -pv $HADOOP_HOME/dfs/name && \
@@ -59,14 +59,14 @@ RUN mkdir -pv $HADOOP_HOME/input && \
 
 RUN cp $HADOOP_HOME/etc/hadoop/*.xml $HADOOP_HOME/input
 
-ADD config/hadoop/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-ADD config/hadoop/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
-ADD config/hadoop/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
-ADD config/hadoop/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
+COPY config/hadoop/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+COPY config/hadoop/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
+COPY config/hadoop/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
+COPY config/hadoop/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
 RUN $HADOOP_HOME/bin/hdfs namenode -format
 
-ADD config/ssh/ssh_config /root/.ssh/config
+COPY config/ssh/ssh_config /root/.ssh/config
 RUN chmod 600 /root/.ssh/config && \
     chown root.root /root/.ssh/config
 
