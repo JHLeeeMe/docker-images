@@ -42,7 +42,7 @@ $ ./run-container.sh <slave-server number>
 $ ./run-container.sh 3
   # create network & run master, slave
   > network-name = hadoop-cluster
-  > master, slave-1, slave-2, slave-3
+  > master (10.0.0.10), slave-1 (10.0.0.11), slave-2 (10.0.0.12), slave-3 (10.0.0.13)
 ```
 
 ### 2. Modify config
