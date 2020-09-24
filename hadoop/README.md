@@ -6,8 +6,8 @@ Contains: ```Java-1.8```, ```Hadoop-3.2.1```
 - ```3.2.1```
 
 ## Usage
-### Pull or Build
-- Pull
+### 1. Pull or Build
+Pull
 1. Create docker network
 ```bash
 $ docker network create --subnet 10.0.0.0/24 <network-name>
@@ -30,7 +30,9 @@ $ docker run -itd --ip 10.0.0.<2~254> --network <network-name> [--name <slave-na
 $ docker run -itd --ip 10.0.0.<2~254> --network <network-name> [--name <slave-name>] jhleeeme/hadoop:3.2.1 /bin/bash
 ```
 
-- Build
+OR  
+
+Build
 1. Download Dockfile & run-container.sh & config folder
 ```bash
 # Execute run-container.sh
@@ -43,7 +45,7 @@ $ ./run-container.sh 3
   > master, slave-1, slave-2, slave-3
 ```
 
-### Modify config
+### 2. Modify config
 ```bash
 # attach master
 $ docker attach master
@@ -57,7 +59,7 @@ master$ echo "<slave-name>" >> workers
 master$ echo "<slave-name>" >> workers
 ```
 
-### Start hadoop
+### 3. Start hadoop
 ```bash
 # start hdfs, yarn
 master$ start-dfs.sh && start-yarn.sh
@@ -67,7 +69,7 @@ master$ jps
 master$ ssh <slave-name> '/opt/java/bin/jps'
 ```
 
-### Hello, Hadoop
+### 4. Hello, Hadoop
 ```bash
 # mkdir
 master$ hdfs dfs -mkdir -p /user/root
