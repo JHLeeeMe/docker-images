@@ -36,7 +36,7 @@ Build
 1. Download Dockfile & run-container.sh & config folder
 ```bash
 # Execute run-container.sh
-$ ./run-container.sh <slave-server number>
+$ ./run-container.sh <number of slave-servers>
 
 # e.g.
 $ ./run-container.sh 3
