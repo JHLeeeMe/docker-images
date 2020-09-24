@@ -21,7 +21,7 @@ $ docker network ls
 $ docker pull jhleeeme/hadoop:3.2.1
 
 # run master
-$ docker run -itd --ip 10.0.0.<2~254> --network <network-name> [-p <local-port>:50070] --name master jhleeeme/hadoop:3.2.1 /bin/bash
+$ docker run -itd --ip 10.0.0.<2~254> --network <network-name> --name master [-p <local-port>:50070] jhleeeme/hadoop:3.2.1 /bin/bash
 
 # run slave
 $ docker run -itd --ip 10.0.0.<2~254> --network <network-name> [--name <slave-name>] jhleeeme/hadoop:3.2.1 /bin/bash
