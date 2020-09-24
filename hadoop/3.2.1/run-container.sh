@@ -3,7 +3,7 @@
 
 if [ $# -ne 1 ] || [ $1 -lt 2 ]; then
     echo 'Slave Number'
-    echo 'Usage: run.sh <2 ~ 254>'
+    echo 'Usage: run-container.sh <2 ~ 254>'
     echo '  if run.sh 3 >>> master, slave-1, slave-2, slave-3'
     echo '  master (10.0.0.10)'
     echo '  slave-1 (10.0.0.11), slave-2 (10.0.0.12), ..., slave-N (10.0.0.10+N)'
