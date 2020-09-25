@@ -53,10 +53,10 @@ $ docker attach master
 # modify workers & slaves
 master$ cd /opt/hadoop/etc/hadoop
 master$ sed 1d workers > tmp && mv tmp workers
-master$ echo "<slave-name>" >> workers
-master$ echo "<slave-name>" >> workers
+master$ echo "<slave-name-1>" >> workers
+master$ echo "<slave-name-2>" >> workers
 ~~~~~~~
-master$ echo "<slave-name>" >> workers
+master$ echo "<slave-name-N>" >> workers
 
 master$ cp workers /opt/spark/conf/slaves
 ```
