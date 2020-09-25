@@ -7,7 +7,7 @@ Contains: ```scala```, ```sbt```, ```python3```
 
 ## Usage
 ### 1. Pull or Build
-Pull
+**Pull**
 1. Create docker network
 ```bash
 $ docker network create --subnet 10.0.0.0/24 <network-name>
@@ -32,7 +32,7 @@ $ docker run -itd --ip 10.0.0.<2~254> --network <network-name> [--name <slave-na
 
 OR  
 
-Build
+**Build**
 1. Download Dockfile & run-container.sh & config folder
 ```bash
 # Execute run-container.sh
