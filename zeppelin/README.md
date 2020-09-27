@@ -1,7 +1,5 @@
 # Zeppelin images
-BASE: ```jhleeeme/zeppelin-0.8.2```  
-
-# 미완!!!!!
+BASE: ```jhleeeme/zeppelin-0.8.2```
 
 ## Tags
 - ```0.8.2```
