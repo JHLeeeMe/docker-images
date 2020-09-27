@@ -1,5 +1,5 @@
 # Zeppelin images
-BASE: ```jhleeeme/zeppelin-0.8.2```
+BASE: ```jhleeeme/spark-2.4.0```
 
 ## Tags
 - ```0.8.2```
