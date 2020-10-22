@@ -12,7 +12,7 @@ fi
 
 # Create network
 line=$(docker network ls |grep spark-cluster |wc -l)
-if [ $line -eq 0  ]; then
+if [ $line -eq 0 ]; then
     docker network create \
         --subnet 10.0.0.0/24 \
         spark-cluster
