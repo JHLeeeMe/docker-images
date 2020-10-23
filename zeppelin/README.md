@@ -1,87 +1,24 @@
 # Zeppelin images
-BASE: ```jhleeeme/spark:2.4.0```  
-
-# 미완!!!!!
+BASE: ```jhleeeme/spark-2.4.0```
 
 ## Tags
 - ```0.8.2```
 
 ## Usage
-### 1. Pull or Build
-Pull
-1. Create docker network
-```bash
-$ docker network create --subnet 10.0.0.0/24 <network-name>
+### 1. Run spark container
+[spark README.md](https://github.com/JHLeeeMe/docker-images/tree/master/spark)
 
-# network list
-$ docker network ls
+### 2. Run zeppelin container
+```bash
+docker run \
+    -itd \
+    --network <spark-network> \
+    --name <container-name> \
+    --ip <ip> \
+    -p <local-port>:7777 \
+    jhleeeme/zeppelin:0.8.2 \
+    /bin/bash
 ```
 
-2. Pull & Run
-```bash
-$ docker pull jhleeeme/hadoop:3.2.1
-
-# run master
-$ docker run -itd --ip 10.0.0.<2~254> --network <network-name> --name master [-p <local-port>:50070] jhleeeme/hadoop:3.2.1 /bin/bash
-
-# run slave
-$ docker run -itd --ip 10.0.0.<2~254> --network <network-name> [--name <slave-name>] jhleeeme/hadoop:3.2.1 /bin/bash
-$ docker run -itd --ip 10.0.0.<2~254> --network <network-name> [--name <slave-name>] jhleeeme/hadoop:3.2.1 /bin/bash
-~~~~~
-$ docker run -itd --ip 10.0.0.<2~254> --network <network-name> [--name <slave-name>] jhleeeme/hadoop:3.2.1 /bin/bash
-```
-
-OR  
-
-Build
-1. Download Dockfile & run-container.sh & config folder
-```bash
-# Execute run-container.sh
-$ ./run-container.sh <number of slave-servers>
-
-# e.g.
-$ ./run-container.sh 3
-  # create network & run master, slave
-  > network-name = hadoop-cluster
-  > master (10.0.0.10), slave-1 (10.0.0.11), slave-2 (10.0.0.12), slave-3 (10.0.0.13)
-```
-
-### 2. Modify config
-```bash
-# attach master
-$ docker attach master
-
-# modify workers
-master$ cd /opt/hadoop/etc/hadoop
-master$ sed 1d workers > tmp && mv tmp workers
-master$ echo "<slave-name>" >> workers
-master$ echo "<slave-name>" >> workers
-~~~~~~~
-master$ echo "<slave-name>" >> workers
-```
-
-### 3. Start hadoop
-```bash
-# start hdfs, yarn
-master$ start-dfs.sh && start-yarn.sh
-
-# check jps
-master$ jps
-master$ ssh <slave-name> '/opt/java/bin/jps'
-```
-
-### 4. Hello, Hadoop
-```bash
-# mkdir
-master$ hdfs dfs -mkdir -p /user/root
-
-# put
-master$ hdfs dfs -put $HADOOP_HOME/LICENSE.txt /user/root/
-
-# run wordcount
-master$ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar wordcount /user/root /test_out
-
-# check output file
-master$ hdfs dfs -ls -R /test_out
-master$ hdfs dfs -cat /test_out/part-r-00000
-```
+### 3. Hello, zeppelin
+connect localhost:<local-port> on web-browser
