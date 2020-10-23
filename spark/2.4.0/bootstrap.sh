@@ -6,19 +6,9 @@
 cd $HADOOP_PREFIX/share/hadoop/common ; for cp in ${ACP//,/ }; do  echo == $cp; curl -LO $cp ; done; cd -
 
 service ssh start
-#$HADOOP_PREFIX/sbin/start-dfs.sh
-#$HADOOP_PREFIX/sbin/start-yarn.sh
-
-#hdfs dfs -put $SPARK_HOME/jars /spark
-#echo spark.yarn.jars hdfs:///spark/*.jar > $SPARK_HOME/conf/spark-defaults.conf
 
 #make directory in hdfs 
 hdfs dfs -mkdir -p /spark/shared-logs/
-
-#spark.yarn.archive
-#apt-get install zip
-#cd /usr/local/spark/jars/ && zip /usr/local/spark/spark-jars.zip ./* 
-#hdfs dfs -put /usr/local/spark/spark-jars.zip /spark/
 
 cp $SPARK_HOME/conf/metrics.properties.template $SPARK_HOME/conf/metrics.properties
 

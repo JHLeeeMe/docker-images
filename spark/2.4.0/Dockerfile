@@ -24,7 +24,11 @@ ENV PATH $SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
 
 COPY config/spark/spark-env.sh $SPARK_HOME/conf/spark-env.sh
 COPY config/spark/spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf
-RUN cp $HADOOP_CONF_DIR/workers $SPARK_HOME/conf/slaves
+COPY config/spark/create-slaves.sh /tmp/
+
+RUN /tmp/create-slaves.sh && \
+    cp $HADOOP_CONF_DIR/workers $SPARK_HOME/conf/slaves && \
+    rm -rf /tmp/create-slaves.sh
 
 COPY bootstrap.sh /etc/bootstrap.sh
 RUN chown root.root /etc/bootstrap.sh
