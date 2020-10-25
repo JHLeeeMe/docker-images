@@ -2,6 +2,7 @@
 
 
 if [ -z $SLAVE_NUM ]; then
+    echo "$HADOOP_CONF_DIR"
     exit 0
 fi
 

@@ -1,6 +1,7 @@
 FROM jhleeeme/hadoop:3.2.1
 LABEL maintainer="JHLeeeMe"
 
+
 # scala
 RUN apt-get -y update && \
     apt-get -y upgrade && \
@@ -25,11 +26,12 @@ ENV PATH $SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
 COPY config/spark/spark-env.sh $SPARK_HOME/conf/spark-env.sh
 COPY config/spark/spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf
 
+ARG SLAVE_NUM
 COPY config/spark/create-slaves.sh /etc/
 RUN chown root.root /etc/create-slaves.sh && \
     chmod 700 /etc/create-slaves.sh && \
-    /etc/create-slaves.sh && \
-    cp $HADOOP_CONF_DIR/workers $SPARK_HOME/conf/slaves && \
+    /etc/create-slaves.sh ${SLAVE_NUM} && \
+    cp $HADOOP_CONF_DIR/workers $SPARK_HOME/conf/slaves
 
 COPY bootstrap.sh /etc/bootstrap.sh
 RUN chown root.root /etc/bootstrap.sh && \
