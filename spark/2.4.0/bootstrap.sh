@@ -5,17 +5,28 @@
 # installing libraries if any - (resource urls added comma separated to the ACP system variable)
 cd $HADOOP_PREFIX/share/hadoop/common ; for cp in ${ACP//,/ }; do  echo == $cp; curl -LO $cp ; done; cd -
 
+# Start ssh
 service ssh start
 
-#make directory in hdfs 
-hdfs dfs -mkdir -p /spark/shared-logs/
+# Modify workers & slaves
+/etc/create-slaves.sh $SLAVE_NUM
+unset SLAVE_NUM
+
+# in master server
+if [[ `uname -n` == "master" ]]; then
+    # Start yarn, hdfs, master, slaves
+    start-yarn.sh && start-dfs.sh && start-master.sh && start-slaves.sh
+
+    # Create directory in hdfs 
+    hdfs dfs -mkdir -p /spark/shared-logs/
+fi
+
 
 cp $SPARK_HOME/conf/metrics.properties.template $SPARK_HOME/conf/metrics.properties
 
 # Create a user in the start up if NEW_USER environment variable is given
 # EX: docker run  -e NEW_USER=kmucs -e RSA_PUBLIC_KEY="...."  ...
-if [[ ! -z $NEW_USER ]];
-then
+if [[ ! -z $NEW_USER ]]; then
     adduser --disabled-password --gecos ""  "$NEW_USER" > /dev/null
     usermod -aG sudo "$NEW_USER" > /dev/null
     sudo -u "$NEW_USER" mkdir /home/"$NEW_USER"/.ssh

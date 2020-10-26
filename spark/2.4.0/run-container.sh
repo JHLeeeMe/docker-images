@@ -18,16 +18,6 @@ if [ $line -eq 0 ]; then
         spark-cluster
 fi
 
-# Run master
-docker run \
-    -itd \
-    --name master \
-    --network spark-cluster \
-    --ip 10.0.0.10 \
-    -p 28088:8088 \
-    jhleeeme/spark:2.4.0 \
-    /bin/bash
-
 # Run slave-N
 tmp=11
 for i in `seq 1 $1`
@@ -35,6 +25,7 @@ do
     docker run \
         -itd \
         --name slave-$i \
+        --hostname slave-$i \
         --network spark-cluster \
         --ip 10.0.0.$tmp \
         jhleeeme/spark:2.4.0 \
@@ -42,3 +33,16 @@ do
 
     (( tmp += 1 ))
 done
+
+# Run master
+docker run \
+    -itd \
+    --name master \
+    --hostname master \
+    --network spark-cluster \
+    --ip 10.0.0.10 \
+    -p 28088:8088 \
+    -e SLAVE_NUM=3 \
+    jhleeeme/spark:2.4.0 \
+    /bin/bash
+
