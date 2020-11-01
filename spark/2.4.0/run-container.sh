@@ -20,16 +20,14 @@ fi
 
 # Run slave-N
 tmp=11
-for i in `seq 1 $1`
-do
+for i in `seq 1 $1`; do
     docker run \
         -itd \
         --name slave-$i \
         --hostname slave-$i \
         --network spark-cluster \
         --ip 10.0.0.$tmp \
-        jhleeeme/spark:2.4.0 \
-        /bin/bash
+        jhleeeme/spark:2.4.0
 
     (( tmp += 1 ))
 done
@@ -43,6 +41,5 @@ docker run \
     --ip 10.0.0.10 \
     -p 28088:8088 \
     -e SLAVE_NUM=3 \
-    jhleeeme/spark:2.4.0 \
-    /bin/bash
+    jhleeeme/spark:2.4.0
 

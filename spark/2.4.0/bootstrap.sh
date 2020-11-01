@@ -6,9 +6,11 @@
 cd $HADOOP_PREFIX/share/hadoop/common ; for cp in ${ACP//,/ }; do  echo == $cp; curl -LO $cp ; done; cd -
 
 # Start ssh
+echo "# `hostname -f`: ssh start"
 service ssh start
 
 # Modify workers & slaves
+echo "# `hostname -f`: exec create-slaves.sh"
 /etc/create-slaves.sh $SLAVE_NUM
 unset SLAVE_NUM
 
@@ -49,11 +51,14 @@ if [[ ! -z $NEW_USER ]]; then
     echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$LD_LIBRARY_PATH" >> /home/"$NEW_USER"/.bashrc
 fi
 
-CMD=${1:-"exit 0"}
+echo "# `hostname -f`: exec /bin/bash"
+#CMD=${1:-"exit 0"}
+CMD="$1"
 if [[ "$CMD" == "-d" ]];
 then
     service sshd stop
     /usr/sbin/sshd -D -d
 else
-    /bin/bash -c "$*"
+    #/bin/bash -c "$*"
+    /bin/bash
 fi
