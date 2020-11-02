@@ -2,10 +2,14 @@ FROM jhleeeme/hadoop:3.2.1
 LABEL maintainer="JHLeeeMe"
 
 
-# scala
 RUN apt-get -y update && \
-    apt-get -y upgrade && \
-    apt-get -y install scala
+    apt-get -y upgrade
+
+# scala-2.11.12
+RUN wget "https://downloads.lightbend.com/scala/2.11.12/scala-2.11.12.tgz" && \
+    tar xzf scala-2.11.12.tgz -C /opt && \
+    rm /scala-2.11.12.tgz && \
+    cd /opt && ln -s ./scala-2.11.12 scala-2.11
 
 # sbt
 RUN apt-get -y install apt-transport-https
@@ -15,7 +19,9 @@ RUN apt-get -y update
 RUN apt-get -y install sbt
 
 # python
-RUN apt-get -y install python3
+RUN apt-get -y install python3 python3-pip && \
+    ln -s python3 python && \
+    mv python /usr/bin/
 
 # spark 2.4.0 without hadoop
 RUN wget https://archive.apache.org/dist/spark/spark-2.4.0/spark-2.4.0-bin-without-hadoop.tgz && \
