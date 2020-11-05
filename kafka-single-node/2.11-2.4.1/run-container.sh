@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# Create network
+# Create network if not exists
 line=$(docker network ls |grep my-net |wc -l)
 if [ "$line" -eq 0 ]; then
     docker network create \
