@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 
 
+# Create network
+line=$(docker network ls |grep my-net |wc -l)
+if [ "$line" -eq 0 ]; then
+    docker network create \
+        --subnet 10.0.0.0/24 \
+        my-net
+fi
+
 docker run \
     -it \
     --name kafka-single-node \
     --ip 10.0.0.30 \
-    --network spark-cluster \
-    -e CREATE_TOPICS=iot,words \
+    --network my-net \
     jhleeeme/kafka-single-node:2.11-2.4.1

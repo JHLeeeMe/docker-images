@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
-echo "Create topics"
-/etc/create-topics.sh
-unset CREATE_TOPICS
 
-echo "Start zookeeper"
+echo "Starting zookeeper"
 zookeeper-server-start.sh -daemon /opt/kafka/config/zookeeper.properties
 
-echo "Start kafka"
+echo "Starting kafka"
 kafka-server-start.sh /opt/kafka/config/server.properties
+#kafka-server-start.sh -daemon /opt/kafka/config/server.properties
 
-#/bin/bash -c "$*"
+#echo "Creating topics"
+#/etc/create-topics.sh
+#unset CREATE_TOPICS
+
+## exec /bin/bash
+#/bin/bash
