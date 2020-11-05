@@ -14,6 +14,10 @@ echo "# `hostname -f`: exec create-slaves.sh"
 /etc/create-slaves.sh $SLAVE_NUM
 unset SLAVE_NUM
 
+cp $SPARK_HOME/conf/metrics.properties.template $SPARK_HOME/conf/metrics.properties
+cp $SPARK_HOME/conf/log4j.properties.template $SPARK_HOME/conf/log4j.properties
+sed -i "s/INFO/WARN/g" $SPARK_HOME/conf/log4j.properties
+
 # in master server
 if [[ `uname -n` == "master" ]]; then
     # Start yarn, hdfs, master, slaves
@@ -22,9 +26,6 @@ if [[ `uname -n` == "master" ]]; then
     # Create directory in hdfs 
     hdfs dfs -mkdir -p /spark/shared-logs/
 fi
-
-
-cp $SPARK_HOME/conf/metrics.properties.template $SPARK_HOME/conf/metrics.properties
 
 # Create a user in the start up if NEW_USER environment variable is given
 # EX: docker run  -e NEW_USER=kmucs -e RSA_PUBLIC_KEY="...."  ...
