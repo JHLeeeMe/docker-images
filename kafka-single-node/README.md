@@ -6,8 +6,7 @@ Contains: ```Java-1.8```, ```Scala-2.11.12```, ```Kafka_2.11-2.4.1```
 - ```2.11-2.4.1```
 
 ## Usage
-### 1. Pull or Build
-Pull
+### Pull & Run
 1. Create docker network
 ```bash
 $ docker network create --subnet 10.0.0.0/24 <network-name>
@@ -30,8 +29,8 @@ $ docker run \
 
 OR  
 
-Build
-1. Download Dockfile & run-container.sh
+### Build & Exec script
+1. Download Dockfile & Exec run-container.sh
 ```bash
 # Execute run-container.sh
 $ ./run-container.sh
