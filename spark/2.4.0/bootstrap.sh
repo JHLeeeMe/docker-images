@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 
 : ${HADOOP_PREFIX:=/opt/hadoop}
 
@@ -6,11 +7,11 @@
 cd $HADOOP_PREFIX/share/hadoop/common ; for cp in ${ACP//,/ }; do  echo == $cp; curl -LO $cp ; done; cd -
 
 # Start ssh
-echo "# `hostname -f`: ssh start"
+echo "# $(hostname -f): ssh start"
 service ssh start
 
 # Modify workers & slaves
-echo "# `hostname -f`: exec create-slaves.sh"
+echo "# $(hostname -f): exec create-slaves.sh"
 /etc/create-slaves.sh $SLAVE_NUM
 unset SLAVE_NUM
 
@@ -19,7 +20,7 @@ cp $SPARK_HOME/conf/log4j.properties.template $SPARK_HOME/conf/log4j.properties
 sed -i "s/INFO/WARN/g" $SPARK_HOME/conf/log4j.properties
 
 # in master server
-if [[ `uname -n` == "master" ]]; then
+if [[ $(uname -n) == "master" ]]; then
     # Start yarn, hdfs, master, slaves
     start-yarn.sh && start-dfs.sh && start-master.sh && start-slaves.sh
 
@@ -52,7 +53,7 @@ if [[ ! -z $NEW_USER ]]; then
     echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$LD_LIBRARY_PATH" >> /home/"$NEW_USER"/.bashrc
 fi
 
-echo "# `hostname -f`: exec /bin/bash"
+echo "# $(hostname -f): exec /bin/bash"
 #CMD=${1:-"exit 0"}
 CMD="$1"
 if [[ "$CMD" == "-d" ]];
