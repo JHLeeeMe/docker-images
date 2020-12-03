@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 
-if [ $# -ne 1 ] || [ $1 -lt 2 ]; then
+if [ $# -ne 1 ] || [ $1 -lt 1 ]; then
 cat <<EOF
 Slave Number
-Usage: run-container.sh <2 ~ 254>
-  if run.sh 3 >>> master, slave-1, slave-2, slave-3
+Usage: run-container.sh <1 ~ 254>
+  if run-container.sh 3 >>> master, slave-1, slave-2, slave-3
   master (10.0.0.10)
   slave-1 (10.0.0.11), slave-2 (10.0.0.12), ..., slave-N (10.0.0.10+N)
 EOF
@@ -42,6 +42,6 @@ docker run \
     --network spark-cluster \
     --ip 10.0.0.10 \
     -p 28088:8088 \
-    -e SLAVE_NUM=3 \
+    -e SLAVE_NUM=$1 \
     jhleeeme/spark:2.4.0
 
