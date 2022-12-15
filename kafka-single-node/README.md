@@ -1,5 +1,5 @@
 # Kafka-single-node images
-BASE: ```jhleeeme/ubuntu:18.04```, ```alpine:latest```
+BASE: ```jhleeeme/ubuntu:18.04```, ```alpine:latest```  
 Contains: 
   - ubuntu: ```Java-1.8```, ```Scala-2.11.12```, ```Kafka_2.11-2.4.1```
   - alpine: ```Openjdk17```, ```Kafka_2.13-3.1.1```

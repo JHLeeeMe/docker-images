@@ -39,8 +39,9 @@ README: [zeppelin/README.md](https://github.com/JHLeeeMe/docker-images/tree/mast
 - [0.8.2](https://github.com/JHLeeeMe/docker-images/tree/master/zeppelin/0.8.2)
 
 ## Kafka-single-node
-BASE: ```jhleeeme/ubuntu:18.04```  
+BASE: ```jhleeeme/ubuntu:18.04```, ```alpine:latest```  
 README: [kafka-single-node/README.md](https://github.com/JHLeeeMe/docker-images/tree/master/kafka-single-node)
 
 ### Tags
 - [2.11-2.4.1](https://github.com/JHLeeeMe/docker-images/tree/master/kafka-single-node/2.11-2.4.1)
+- [2.13-3.1.1-alpine](https://github.com/JHLeeeMe/docker-images/tree/master/kafka-single-node/2.13-3.1.1-alpine)
